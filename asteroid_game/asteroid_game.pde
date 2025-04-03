@@ -10,17 +10,43 @@ boolean upkey, downkey, leftkey, rightkey;
 PVector loc;
 PVector vel;
 
+star[] theStars;
+int numstars;
+
 //game objects
 Spaceship player1;
 
+PFont plank;
+
+
+
+
+
+
+
+
 
 void setup() {
-  mode = GAME;
+  mode = INTRO;
   size(800, 800);
   textAlign(CENTER, CENTER);
   rectMode(CENTER);
 
-player1 = new Spaceship();
+  player1 = new Spaceship();
+
+
+
+  numstars = 100;
+  theStars = new star[numstars]; //contructor
+  int i = 0;
+  while (i < numstars) {
+    theStars[i] = new star();
+    i++;
+  }
+
+plank = createFont("PLANK___.TTF",100);
+
+
 
 
 
@@ -31,11 +57,7 @@ player1 = new Spaceship();
 
 
 
-
-
 void draw() {
-
-
 
 
   if (mode == INTRO) {

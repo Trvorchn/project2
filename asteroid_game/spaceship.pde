@@ -6,7 +6,7 @@ class Spaceship {
   Spaceship() {
 
     loc = new PVector (width/2, height/2);
-    vel = new PVector (1, 0);
+    vel = new PVector (0, 0);
     vel.setMag(random(1, 5));
     vel.rotate(radians(random(0, 360)));
     dir = new PVector (1, 0);
@@ -15,6 +15,7 @@ class Spaceship {
   void show() {
     pushMatrix();
     translate(loc.x, loc.y);
+    rotate(dir.heading());
     drawShip();
     popMatrix();
   }
@@ -40,10 +41,16 @@ class Spaceship {
     checkForCollisions();
   }
 
-
-
   void move() {
-  }
+    loc.add(vel);
+    
+  if (upkey)vel.add(dir);
+    if (leftkey)dir.rotate(-radians(3));
+    if (rightkey)dir.rotate(radians(3));
+  
+
+
+}
   void shoot() {
   }
   void checkForCollisions() {
