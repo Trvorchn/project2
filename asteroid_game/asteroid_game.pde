@@ -5,6 +5,7 @@ final int GAME = 1;
 final int PAUSE = 2;
 final int GAMEOVER = 3;
 
+
 boolean upkey, downkey, leftkey, rightkey;
 
 PVector loc;
@@ -17,13 +18,6 @@ int numstars;
 Spaceship player1;
 
 PFont plank;
-
-
-
-
-
-
-
 
 
 void setup() {
@@ -44,12 +38,7 @@ void setup() {
     i++;
   }
 
-plank = createFont("PLANK___.TTF",100);
-
-
-
-
-
+  plank = createFont("PLANK___.TTF", 100);
 }
 
 
