@@ -3,12 +3,16 @@ class Spaceship {
   PVector vel;
   PVector dir;
   PVector pos;
+  
+
   Spaceship() {
 
     loc = new PVector (width/2, height/2);
     vel = new PVector (0, 0);
-    vel.setMag(random(1, 3));
-    vel.rotate(radians(random(0, 360)));
+    vel.limit(10);
+    vel.setMag(1);
+    
+    //vel.rotate(radians(random(0, 360)));
     dir = new PVector (1, 0);
   }
 
@@ -44,6 +48,12 @@ class Spaceship {
 
   void move() {
     loc.add(vel);
+    float topSpeed = 5;
+    if (vel.mag() > topSpeed){
+    vel.normalize();
+    vel.mult(topSpeed);
+    }
+
 
     if (upkey)vel.add(dir);
     if (leftkey)dir.rotate(-radians(3));

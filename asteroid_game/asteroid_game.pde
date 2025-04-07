@@ -31,7 +31,7 @@ void setup() {
 
 
   numstars = 100;
-  theStars = new star[numstars]; //contructor
+  theStars = new star[numstars]; 
   int i = 0;
   while (i < numstars) {
     theStars[i] = new star();
