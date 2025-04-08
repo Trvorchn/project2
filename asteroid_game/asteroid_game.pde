@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 int mode;
 
 final int INTRO = 0;
@@ -6,7 +8,7 @@ final int PAUSE = 2;
 final int GAMEOVER = 3;
 
 
-boolean upkey, downkey, leftkey, rightkey;
+boolean upkey, downkey, leftkey, rightkey, spacekey;
 
 PVector loc;
 PVector vel;
@@ -17,6 +19,12 @@ int numstars;
 //game objects
 Spaceship player1;
 
+//list of bullets
+ArrayList <GameObject> objects;
+
+
+
+
 PFont plank;
 
 
@@ -25,13 +33,13 @@ void setup() {
   size(800, 800);
   textAlign(CENTER, CENTER);
   rectMode(CENTER);
-
+  objects = new ArrayList();
   player1 = new Spaceship();
-
+  objects.add(player1);
 
 
   numstars = 100;
-  theStars = new star[numstars]; 
+  theStars = new star[numstars];
   int i = 0;
   while (i < numstars) {
     theStars[i] = new star();
@@ -48,7 +56,7 @@ void setup() {
 
 void draw() {
 
-
+//println(objects.size());
   if (mode == INTRO) {
     intro();
   } else if (mode == GAME) {

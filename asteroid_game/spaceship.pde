@@ -1,17 +1,13 @@
-class Spaceship {
-  PVector loc;
-  PVector vel;
+class Spaceship  extends GameObject {
+
   PVector dir;
   PVector pos;
-  
+
 
   Spaceship() {
-
-    loc = new PVector (width/2, height/2);
-    vel = new PVector (0, 0);
-    vel.limit(10);
+    super(width/2,height/2,0,0);
     vel.setMag(1);
-    
+
     //vel.rotate(radians(random(0, 360)));
     dir = new PVector (1, 0);
   }
@@ -49,9 +45,11 @@ class Spaceship {
   void move() {
     loc.add(vel);
     float topSpeed = 5;
-    if (vel.mag() > topSpeed){
-    vel.normalize();
-    vel.mult(topSpeed);
+
+
+    if (vel.mag() > topSpeed) {
+      vel.normalize();
+      vel.mult(topSpeed);
     }
 
 
@@ -60,6 +58,10 @@ class Spaceship {
     if (rightkey)dir.rotate(radians(3));
   }
   void shoot() {
+    if (spacekey) {
+      objects.add(new Bullet());
+      println("?");
+    }
   }
   void checkForCollisions() {
   }
