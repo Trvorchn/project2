@@ -4,19 +4,20 @@ class Bullet extends GameObject {
   Bullet() {
     super (player1.loc.copy(), player1.dir.copy());
     vel.setMag(10);
-    timer = 60;
-   
+    timer = 120;
+    d = 5;
   }
 
   void show() {
     fill(black);
     stroke(white);
     strokeWeight(2);
-    circle(loc.x, loc.y, 5);
+    circle(loc.x, loc.y, d);
   }
   void act() {
-    println(timer);
+    
     loc.add(vel);
+    wrapAround();
     timer--;
     if (timer == 0) lives = 0;
   }

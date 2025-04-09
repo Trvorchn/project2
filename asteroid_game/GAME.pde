@@ -6,9 +6,10 @@ void game() {
     GameObject currentObject= objects.get(i);
     currentObject.act();
     currentObject.show();
-    if (currentObject.lives == 0)
+    if (currentObject.lives == 0) {
       objects.remove(i);
-    else
+      println("?");
+    } else
       i++;
   }
 }

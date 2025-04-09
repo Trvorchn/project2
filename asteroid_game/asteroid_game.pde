@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 
 int mode;
@@ -36,6 +37,10 @@ void setup() {
   objects = new ArrayList();
   player1 = new Spaceship();
   objects.add(player1);
+objects.add(new Asteroid());
+objects.add(new Asteroid());
+objects.add(new Asteroid());
+objects.add(new Asteroid());
 
 
   numstars = 100;
