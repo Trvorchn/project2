@@ -11,9 +11,9 @@ class Asteroid extends GameObject {
     rotSpeed = random(-2, 2);
     angle = 0;
   }
-  Asteroid() {
-    objects.add(new Asteroid(loc.x, loc.y, lives-1));
-  }
+  //Asteroid() {
+  //  objects.add(new Asteroid(loc.x, loc.y, lives-1));
+  //}
 
   void show() {
     fill(black);

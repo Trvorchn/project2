@@ -8,7 +8,7 @@ class star {
     x = random(0,width);
     y = random(0, height);
     vx = (5);
-    vy = random(1, 2);
+    vy = random(1, 4);
     size = vy;
     r = 255;
     g = 255;
@@ -28,7 +28,10 @@ class star {
       size = vx;
       x = width-size;
     }
-    
-    
+       y = y - vy;
+    if ( y < -size) {
+      size = vy;
+      y = height-size;
+    }
     }
   }

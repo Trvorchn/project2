@@ -21,7 +21,7 @@ noStroke();
   
   
   
-    fill(0,20);
+    fill(255,1);
   rect(width/2,height/2,width,height);
    int i = 0;
   while (i < numstars) {
