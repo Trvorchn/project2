@@ -10,7 +10,7 @@ class Spaceship  extends GameObject {
 
     //vel.rotate(radians(random(0, 360)));
     dir = new PVector (1, 0);
-    
+
     cooldown = 0;
   }
 
@@ -51,23 +51,29 @@ class Spaceship  extends GameObject {
     if (vel.mag() > topSpeed) {
       vel.setMag(topSpeed);
     }
-    
+
     if (upkey)vel.add(dir);
     if (leftkey)dir.rotate(-radians(3));
     if (rightkey)dir.rotate(radians(3));
-  
-}
+  }
   void shoot() {
     cooldown--;
     if (spacekey && cooldown <= 0) {
       objects.add(new Bullet());
-  cooldown = 30;  
-  }
-    
-    
-    
-    
+      cooldown = 30;
+    }
   }
   void checkForCollisions() {
+    int i = 0;
+    while (i< objects.size()) {
+      GameObject obj = objects.get(i);
+      if (obj instanceof Asteroid) {
+        if (dist(loc.x, loc.y, obj.loc.x, obj.loc.y) < d/2 + obj.d/2) {
+          lives = lives - 1;
+          obj.lives = 0;
+        }
+      }
+      i++;
+    }
   }
 }

@@ -19,6 +19,9 @@ class GameObject {
     vel = v;
     lives = lv;
   }
+  GameObject(int lv) {
+    lives = lv;
+  }
 
 
 
@@ -29,16 +32,16 @@ class GameObject {
   void show() {
   }
   void wrapAround() {
-     if (loc.x > width) {
-      loc.x = 0;
-    } else if (loc.x < 0) {
-      loc.x = width;
+     if (loc.x > width+100) {
+      loc.x = -50;
+    } else if (loc.x < -100) {
+      loc.x = width+50;
     }
 
-    if (loc.y > height) {
-      loc.y = 0;
-    } else if (loc.y < 0) {
-      loc.y = height;
+    if (loc.y > height+100) {
+      loc.y = -50;
+    } else if (loc.y < -100) {
+      loc.y = height+50;
     }
   }
 }

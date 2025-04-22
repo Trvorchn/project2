@@ -57,9 +57,6 @@ objects.add(new Asteroid());
 
 
 
-
-
-
 void draw() {
 
 //println(objects.size());
