@@ -71,6 +71,7 @@ class Spaceship  extends GameObject {
         if (dist(loc.x, loc.y, obj.loc.x, obj.loc.y) < d/2 + obj.d/2) {
           lives = lives - 1;
           obj.lives = 0;
+          mode = GAMEOVER;
         }
       }
       i++;
