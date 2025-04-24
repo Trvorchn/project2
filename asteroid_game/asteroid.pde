@@ -4,44 +4,71 @@ class Asteroid extends GameObject {
 
 
 
-  
+
   Asteroid() {
     super(random(0, width), random(height), 1, 1 );
     vel.setMag(random(1, 3));
     vel.rotate(random(TWO_PI));
     lives = 3;
-    d = lives*60;
+    d = lives*40;
     rotSpeed = random(-2, 2);
     angle = 0;
-
   }
 
   Asteroid( int lives) {
     super(random(0, width), random(height), 1, 1);
     vel.setMag(random(1, 3));
     vel.rotate(random(TWO_PI));
-    d = lives*60;
+    d = lives*40;
     this.lives = lives;
+    rotSpeed = random(-2, 2);
+    angle = 0;
   }
+
+  PShape rock;
+
+
+  PVector plot = new PVector(100, 0);
+
+
+
+
 
 
   void show() {
 
     fill(black);
-    stroke(white);
+    stroke(red);
     strokeWeight(3);
     pushMatrix();
     translate(loc.x, loc.y);
     rotate(radians(angle));
-    drawAsteroid();
-    line(0, 0, lives*10/2, 0);
-    popMatrix();
+    //drawAsteroid();
+    //line(0, 0, lives*10/2, 0);
+
+
+
     angle = angle + rotSpeed;
+    rock = createShape();
+    rock.beginShape();
+
+    int i = 0;
+    while ( i < 50) {
+      plot.rotate(radians(360/10));
+      plot.setMag(d);
+      rock.vertex(plot.x, plot.y);
+      i++;
+    }
+
+    rock.endShape(CLOSE);
+
+
+    shape(rock, 0, 0);
+    popMatrix();
   }
   void drawAsteroid() {
     circle(0, 0, d);
-
-}
+  }
 
   void act() {
     loc.add(vel);

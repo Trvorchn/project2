@@ -1,7 +1,7 @@
 
 // color palette 
 color lime = #D1F2A5;
-color red = #F56991;
+color red = #FF1A1A;
 color pink = #EED3D9;
 color blue = #008DDA;
 color turq = #97E7E1;
