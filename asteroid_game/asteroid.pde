@@ -1,7 +1,7 @@
 class Asteroid extends GameObject {
 
   float rotSpeed, angle;
-
+  int sizeFactor = 60;
 
 
 
@@ -10,7 +10,7 @@ class Asteroid extends GameObject {
     vel.setMag(random(1, 3));
     vel.rotate(random(TWO_PI));
     lives = 3;
-    d = lives*40;
+    d = lives*sizeFactor;
     rotSpeed = random(-2, 2);
     angle = 0;
   }
@@ -55,7 +55,7 @@ class Asteroid extends GameObject {
     int i = 0;
     while ( i < 50) {
       plot.rotate(radians(360/10));
-      plot.setMag(d);
+      plot.setMag(d/2);
       rock.vertex(plot.x, plot.y);
       i++;
     }
