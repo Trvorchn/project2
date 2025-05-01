@@ -94,8 +94,8 @@ class Asteroid extends GameObject {
             asteroid1.d = d * 0.5;
             asteroid2.d = d * 0.5;
 
-            asteroid1.loc = new PVector(loc.x + random(-10, 10), loc.y + random(-10, 10));
-            asteroid2.loc = new PVector(loc.x + random(-10, 10), loc.y + random(-10, 10));
+            asteroid1.loc = new PVector(loc.x + random(-50, 50), loc.y + random(-50, 50));
+            asteroid2.loc = new PVector(loc.x + random(-50, 50), loc.y + random(-50, 50));
 
             // velocities
             asteroid1.vel.setMag(random(1, 3));

@@ -41,7 +41,10 @@ objects.add(new Asteroid());
 objects.add(new Asteroid());
 objects.add(new Asteroid());
 objects.add(new Asteroid());
-
+objects.add(new Asteroid());
+objects.add(new Asteroid());
+objects.add(new Asteroid());
+objects.add(new Asteroid());
 
   numstars = 100;
   theStars = new star[numstars];

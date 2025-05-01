@@ -4,8 +4,16 @@ float shakeAmount = 10;
 int shakeDuration = 30;
 boolean resetReady = false;
 
+PImage sadface;
+
+
+
 void gameover() {
+  imageMode(CENTER);
   strokeWeight(5);
+
+  sadface =loadImage ("sadface.png");
+
   pushMatrix();
 
   // Screen shake
@@ -16,21 +24,29 @@ void gameover() {
     shakeDuration--;
   }
 
-  background(0, 25);  
+
+
+
+
+  background(0, 25);
+  image(sadface, 400, 400);
+  tactileR(350, 450, 475, 525);
+  rect(width/2, height/2+100, 100, 50);
+
+  textSize(20);
+  fill(white);
+  text("HOME", width/2, height/2+100);
+  noStroke();
+
+
+
 
 
   // Fading & pulsing text
   fill(255, gameOverFade);
   textFont(plank);
   textAlign(CENTER, CENTER);
-  textSize(64 + sin(frameCount * 0.1) * 5);
   text("YOU LOSE", width / 2, height / 2);
-
-  tactileR(500, 700, 550, 650);
-  rect(400, 600, 200, 100);
-  fill(white);
-  textSize(40);
-  text("HOME", 400, 600);
 
 
 
@@ -53,4 +69,7 @@ void resetGameOverEffects() {
   resetReady = false;
 }
 void gameoverClicks() {
+  if (mouseX > 350  && mouseX < 450 && mouseY > 475 && mouseY < 525) {
+    mode = INTRO;
+  }
 }

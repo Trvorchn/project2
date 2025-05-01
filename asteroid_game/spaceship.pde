@@ -3,14 +3,19 @@ class Spaceship  extends GameObject {
   PVector dir;
   PVector pos;
   int cooldown;
+  int invTimer = 0;
+  float angle = 0;
+  float radius;
+
 
   Spaceship() {
     super(width/2, height/2, 0, 0);
     vel.setMag(1);
+    ellipseMode(RADIUS);
 
     //vel.rotate(radians(random(0, 360)));
     dir = new PVector (1, 0);
-
+    invTimer =200;
     cooldown = 0;
   }
 
@@ -25,6 +30,27 @@ class Spaceship  extends GameObject {
 
   void drawShip() {
 
+    if(upkey) {
+    
+    
+    }
+    
+    
+    
+    
+    if ( invTimer > 0) {
+      radius = 60 + 15 * sin(angle);
+      angle += 0.05;  // increase angle for next frame
+
+      // Draw ellipse in center
+      strokeWeight(2);
+      stroke(blue);
+      fill(lightBlue, 50);
+      ellipse(0, 0, radius, radius);
+    }
+
+
+
     fill(black);
     stroke(white);
     strokeWeight(1);
@@ -34,7 +60,7 @@ class Spaceship  extends GameObject {
     line(20, 0, -20, 0);
     line(-15, 20, 0, 20);
     line(-15, -20, 0, -20);
-    circle(0, 0, 10);
+    circle(0, 0, 5);
   }
 
   void act() {
@@ -42,6 +68,7 @@ class Spaceship  extends GameObject {
     shoot();
     checkForCollisions();
     wrapAround();
+    invincibleTimer();
   }
 
   void move() {
@@ -64,6 +91,8 @@ class Spaceship  extends GameObject {
     }
   }
   void checkForCollisions() {
+    if (invTimer > 0) return;
+
     int i = 0;
     while (i< objects.size()) {
       GameObject obj = objects.get(i);
@@ -75,6 +104,11 @@ class Spaceship  extends GameObject {
         }
       }
       i++;
+    }
+  }
+  void invincibleTimer() {
+    if (invTimer > 0) {
+      invTimer--;
     }
   }
 }

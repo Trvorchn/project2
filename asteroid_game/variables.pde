@@ -4,6 +4,7 @@ color lime = #D1F2A5;
 color red = #FF1A1A;
 color pink = #EED3D9;
 color blue = #008DDA;
+color lightBlue = #21E8FC;
 color turq = #97E7E1;
 color gold = #FFC94A;
 color yellow = #EFFAB4;
