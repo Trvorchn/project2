@@ -69,11 +69,19 @@ class Spaceship  extends GameObject {
     checkForCollisions();
     wrapAround();
     invincibleTimer();
+    superhot();
+    
+    
+  if (vel.mag() > 0.1) {
+    timeShouldMove = true;
+  }
+    
+    
   }
 
   void move() {
     loc.add(vel);
-    float topSpeed = 5;
+    float topSpeed = 1;
 
     if (vel.mag() > topSpeed) {
       vel.setMag(topSpeed);
@@ -82,6 +90,8 @@ class Spaceship  extends GameObject {
     if (upkey)vel.add(dir);
     if (leftkey)dir.rotate(-radians(3));
     if (rightkey)dir.rotate(radians(3));
+        if (downkey)vel.sub(dir);
+
   }
   void shoot() {
     cooldown--;
@@ -100,7 +110,12 @@ class Spaceship  extends GameObject {
         if (dist(loc.x, loc.y, obj.loc.x, obj.loc.y) < d/2 + obj.d/2) {
           lives = lives - 1;
           obj.lives = 0;
-          mode = GAMEOVER;
+          player1.loc = new PVector(width/2, height/2);
+           player1.vel.set(0,0);
+        }
+        if (lives == 0){
+       mode = GAMEOVER;
+        
         }
       }
       i++;

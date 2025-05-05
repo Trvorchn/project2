@@ -35,3 +35,8 @@ void introClicks() {
     mode = GAME;
   }
 }
+void reset(){
+
+
+
+}

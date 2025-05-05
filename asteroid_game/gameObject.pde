@@ -1,13 +1,16 @@
 class GameObject {
   PVector loc;
-  PVector vel;
+  PVector vel, pos;
+
   int lives;
- float d;
+  float d;
+  ;
+
 
   GameObject(float lx, float ly, float vx, float vy) {
     loc = new PVector ( lx, ly);
     vel = new PVector (vx, vy);
-    lives = 1;
+    lives = 3;
   }
   GameObject(PVector l, PVector v) {
     loc = l;
@@ -32,7 +35,7 @@ class GameObject {
   void show() {
   }
   void wrapAround() {
-     if (loc.x > width+100) {
+    if (loc.x > width+100) {
       loc.x = -50;
     } else if (loc.x < -100) {
       loc.x = width+50;
@@ -44,4 +47,11 @@ class GameObject {
       loc.y = height+50;
     }
   }
+  void superhot() {
+    if (vel.mag() > 0.1) {
+      loc.add(vel);
+    } else {
+    
+    }
+  } 
 }

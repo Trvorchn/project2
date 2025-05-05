@@ -3,8 +3,8 @@ class Bullet extends GameObject {
 
   Bullet() {
     super (player1.loc.copy(), player1.dir.copy());
-    vel.setMag(10);
-    timer = 120;
+    vel.setMag(35);
+    timer = 500;
     d = 5;
   }
 
@@ -20,5 +20,6 @@ class Bullet extends GameObject {
     wrapAround();
     timer--;
     if (timer == 0) lives = 0;
+    
   }
 }
