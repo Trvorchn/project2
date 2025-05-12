@@ -15,11 +15,10 @@ class Bullet extends GameObject {
     circle(loc.x, loc.y, d);
   }
   void act() {
-    
+
     loc.add(vel);
     wrapAround();
     timer--;
     if (timer == 0) lives = 0;
-    
   }
 }

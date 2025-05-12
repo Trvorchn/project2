@@ -34,7 +34,7 @@ void gameover() {
   rect(width/2, height/2+100, 100, 50);
 
   textSize(20);
-  fill(white);
+  fill(black);
   text("HOME", width/2, height/2+100);
   noStroke();
 
@@ -59,6 +59,7 @@ void gameover() {
   }
 
   popMatrix();
+  resetGameOverEffects();
 }
 
 

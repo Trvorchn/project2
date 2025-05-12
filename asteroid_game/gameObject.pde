@@ -7,7 +7,7 @@ class GameObject {
   ;
 
 
-  GameObject(float lx, float ly, float vx, float vy) {
+  GameObject(float lx, float ly, float vx, float vy, float life) {
     loc = new PVector ( lx, ly);
     vel = new PVector (vx, vy);
     lives = 3;
@@ -25,8 +25,6 @@ class GameObject {
   GameObject(int lv) {
     lives = lv;
   }
-
-
 
   void act() {
   }
@@ -47,11 +45,4 @@ class GameObject {
       loc.y = height+50;
     }
   }
-  void superhot() {
-    if (vel.mag() > 0.1) {
-      loc.add(vel);
-    } else {
-    
-    }
-  } 
 }

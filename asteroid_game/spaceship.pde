@@ -6,10 +6,18 @@ class Spaceship  extends GameObject {
   int invTimer = 0;
   float angle = 0;
   float radius;
+  float part;
+  float d;
+
+  int teleportCooldown = 0;
+  final int maxTeleportCooldown = 300;
+  boolean canTeleport = true;
+
 
 
   Spaceship() {
-    super(width/2, height/2, 0, 0);
+
+    super(width/2, height/2, 0, 0, 1);
     vel.setMag(1);
     ellipseMode(RADIUS);
 
@@ -25,22 +33,28 @@ class Spaceship  extends GameObject {
     rotate(dir.heading());
     drawShip();
     popMatrix();
+    drawCooldownBar();
   }
+
+
+
+
+
+
+
+
+
+
+
 
 
   void drawShip() {
 
-    if(upkey) {
-    
-    
-    }
-    
-    
-    
-    
+
+
     if ( invTimer > 0) {
       radius = 60 + 15 * sin(angle);
-      angle += 0.05;  // increase angle for next frame
+      angle += 0.05;
 
       // Draw ellipse in center
       strokeWeight(2);
@@ -61,6 +75,13 @@ class Spaceship  extends GameObject {
     line(-15, 20, 0, 20);
     line(-15, -20, 0, -20);
     circle(0, 0, 5);
+
+    if (upkey) {
+      PVector offset = dir.copy();
+      offset.rotate(PI);
+      offset.setMag(25);
+      objects.add(new ParticleT(loc.x + offset.x, loc.y + offset.y, random(-0.25, 0.25), random(-0.25, 0.25)));
+    }
   }
 
   void act() {
@@ -69,14 +90,15 @@ class Spaceship  extends GameObject {
     checkForCollisions();
     wrapAround();
     invincibleTimer();
-    superhot();
-    
-    
-  if (vel.mag() > 0.1) {
-    timeShouldMove = true;
-  }
-    
-    
+    brake();
+    teleport();
+    if (!canTeleport) {
+      teleportCooldown--;
+      if (teleportCooldown <= 0) {
+        canTeleport = true;
+        teleportCooldown = 0;
+      }
+    }
   }
 
   void move() {
@@ -90,14 +112,18 @@ class Spaceship  extends GameObject {
     if (upkey)vel.add(dir);
     if (leftkey)dir.rotate(-radians(3));
     if (rightkey)dir.rotate(radians(3));
-        if (downkey)vel.sub(dir);
-
+    if (downkey)vel.sub(dir);
   }
+
+
+
+
+
   void shoot() {
     cooldown--;
     if (spacekey && cooldown <= 0) {
       objects.add(new Bullet());
-      cooldown = 30;
+      cooldown = 25;
     }
   }
   void checkForCollisions() {
@@ -108,14 +134,14 @@ class Spaceship  extends GameObject {
       GameObject obj = objects.get(i);
       if (obj instanceof Asteroid) {
         if (dist(loc.x, loc.y, obj.loc.x, obj.loc.y) < d/2 + obj.d/2) {
-          lives = lives - 1;
+          lives = lives -1;
           obj.lives = 0;
           player1.loc = new PVector(width/2, height/2);
-           player1.vel.set(0,0);
+          player1.vel.set(0, 0);
+          invTimer = 120;
         }
-        if (lives == 0){
-       mode = GAMEOVER;
-        
+        if (lives == 0) {
+          mode = GAMEOVER;
         }
       }
       i++;
@@ -125,5 +151,64 @@ class Spaceship  extends GameObject {
     if (invTimer > 0) {
       invTimer--;
     }
+  }
+
+  void brake() {
+    if (ekey) {
+      vel.set(0, 0);
+    }
+  }
+  void teleport() {
+    if (qkey && canTeleport) {
+      PVector newLoc = new PVector();
+      boolean safe = false;
+
+      while (safe == false) {
+        float newX = random(0, width);
+        float newY = random(0, height);
+        newLoc.set(newX, newY);
+        safe = true;
+
+        int i = 0;
+        while (i < objects.size()) {
+          GameObject obj = objects.get(i);
+          if (obj instanceof Asteroid) {
+            float d = dist(newLoc.x, newLoc.y, obj.loc.x, obj.loc.y);
+            if (d < 200) {
+              safe = false;
+              break; // exit
+            }
+          }
+          i++;
+        }
+      }
+
+      loc.set(newLoc);
+      canTeleport = false;
+      teleportCooldown = maxTeleportCooldown;
+  
+  }
+  }
+
+  void drawCooldownBar() {
+    float barWidth = 100, barHeight = 10;
+    float x = width - barWidth - 20, y = 20;
+    float fillBar = (maxTeleportCooldown - teleportCooldown) / (float)maxTeleportCooldown;
+    int barColor;
+
+
+    if (canTeleport) {
+      barColor = color(0, 255, 0);
+    } else {
+      barColor = color(255, 0, 0);
+    }
+
+    stroke(255);
+    noFill();
+    rect(x, y, barWidth, barHeight);
+
+    noStroke();
+    fill(barColor);
+    rect(x, y, barWidth * fillBar, barHeight);
   }
 }

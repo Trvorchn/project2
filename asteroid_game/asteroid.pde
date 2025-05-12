@@ -6,7 +6,7 @@ class Asteroid extends GameObject {
 
 
   Asteroid() {
-    super(random(0, width), random(height), 1, 1 );
+    super(random(0, width), random(height), 1, 1, 1 );
     vel.setMag(random(1, 3));
     vel.rotate(random(TWO_PI));
     lives = 3;
@@ -16,7 +16,7 @@ class Asteroid extends GameObject {
   }
 
   Asteroid( int lives) {
-    super(random(0, width), random(height), 1, 1);
+    super(random(0, width), random(height), 1, 1, 1);
     vel.setMag(random(1, 3));
     vel.rotate(random(TWO_PI));
     d = lives*40;
@@ -38,7 +38,7 @@ class Asteroid extends GameObject {
   void show() {
 
     fill(black);
-    stroke(random(0, 255), random(0, 255), random(0, 255));
+    stroke(random(0, 255), random(0, 255));
     strokeWeight(3);
     pushMatrix();
     translate(loc.x, loc.y);
@@ -74,7 +74,6 @@ class Asteroid extends GameObject {
     loc.add(vel);
     wrapAround();
     checkForCollisions();
-    superhot();
   }
 
 
@@ -108,6 +107,19 @@ class Asteroid extends GameObject {
             objects.add(asteroid1);
             objects.add(asteroid2);
           }
+          objects.add(new Particle(loc.x, loc.y, random(-2, 2), random(-2, 2)));
+          objects.add(new Particle(loc.x, loc.y, random(-2, 2), random(-2, 2)));
+          objects.add(new Particle(loc.x, loc.y, random(-2, 2), random(-2, 2)));
+          objects.add(new Particle(loc.x, loc.y, random(-2, 2), random(-2, 2)));
+          objects.add(new Particle(loc.x, loc.y, random(-2, 2), random(-2, 2)));
+          objects.add(new Particle(loc.x, loc.y, random(-2, 2), random(-2, 2)));
+          objects.add(new Particle(loc.x, loc.y, random(-2, 2), random(-2, 2)));
+          objects.add(new Particle(loc.x, loc.y, random(-2, 2), random(-2, 2)));
+          objects.add(new Particle(loc.x, loc.y, random(-2, 2), random(-2, 2)));
+          objects.add(new Particle(loc.x, loc.y, random(-2, 2), random(-2, 2)));
+          objects.add(new Particle(loc.x, loc.y, random(-2, 2), random(-2, 2)));
+          objects.add(new Particle(loc.x, loc.y, random(-2, 2), random(-2, 2)));
+          objects.add(new Particle(loc.x, loc.y, random(-2, 2), random(-2, 2)));
 
 
           lives =0;

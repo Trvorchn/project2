@@ -9,7 +9,7 @@ final int PAUSE = 2;
 final int GAMEOVER = 3;
 
 
-boolean upkey, downkey, leftkey, rightkey, spacekey;
+boolean upkey, downkey, leftkey, rightkey, spacekey, ekey, qkey;
 
 PVector loc;
 PVector vel;

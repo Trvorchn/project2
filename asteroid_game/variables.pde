@@ -10,6 +10,7 @@ color gold = #FFC94A;
 color yellow = #EFFAB4;
 color tan = #D2B48C;
 color green = #D1F2B9;
+color orange = #FF6D12;
 
 
 /// shades 

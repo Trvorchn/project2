@@ -5,7 +5,7 @@ class star {
   int r, g, b;
   //constructor : special funciton that defines how a object  of this clas is born, defines initial values for fields
   star() {
-    x = random(0,width);
+    x = random(0, width);
     y = random(0, height);
     vx = (5);
     vy = random(1, 4);
@@ -23,15 +23,15 @@ class star {
 
   void act() {
 
-     x = x - vx;
+    x = x - vx;
     if ( x < -size) {
       size = vx;
       x = width-size;
     }
-       y = y - vy;
+    y = y - vy;
     if ( y < -size) {
       size = vy;
       y = height-size;
     }
-    }
   }
+}

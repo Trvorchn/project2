@@ -1,5 +1,20 @@
+
+int lives;
+
+
 void game() {
   background(black);
+  lives = 3;
+  strokeWeight(2);
+  fill(white);
+  rect(750, 750, 20, 20);
+  textSize(20);
+  text("PAUSE", 750, 775);
+
+
+
+
+
 
   int i = 0;
   while (i < objects.size()) {
@@ -19,4 +34,5 @@ void game() {
 
 
 void gameClicks() {
+  if (mouseX > 730 && mouseX < 770 && mouseY > 730 && mouseY < 770) mode = PAUSE;
 }
