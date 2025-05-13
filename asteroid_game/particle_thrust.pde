@@ -7,8 +7,9 @@ class ParticleT extends GameObject {
     part = 255;
   }
   void show() {
-
-    noStroke();
+    
+    strokeWeight(0.4);
+    stroke(yellow);
     fill(orange, part);
     ellipse(loc.x, loc.y, d, d);
   }

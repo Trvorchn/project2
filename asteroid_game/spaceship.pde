@@ -186,8 +186,7 @@ class Spaceship  extends GameObject {
       loc.set(newLoc);
       canTeleport = false;
       teleportCooldown = maxTeleportCooldown;
-  
-  }
+    }
   }
 
   void drawCooldownBar() {

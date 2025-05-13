@@ -37,6 +37,7 @@ void setup() {
   rectMode(CENTER);
   objects = new ArrayList();
   player1 = new Spaceship();
+
   objects.add(player1);
   objects.add(new Asteroid());
   objects.add(new Asteroid());
