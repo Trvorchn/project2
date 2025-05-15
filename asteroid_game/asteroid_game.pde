@@ -19,6 +19,7 @@ int numstars;
 
 //game objects
 Spaceship player1;
+UFO AI;
 
 //list of bullets
 ArrayList <GameObject> objects;
@@ -37,16 +38,10 @@ void setup() {
   rectMode(CENTER);
   objects = new ArrayList();
   player1 = new Spaceship();
-
-  objects.add(player1);
-  objects.add(new Asteroid());
-  objects.add(new Asteroid());
-  objects.add(new Asteroid());
-  objects.add(new Asteroid());
-  objects.add(new Asteroid());
-  objects.add(new Asteroid());
-  objects.add(new Asteroid());
-  objects.add(new Asteroid());
+  AI = new UFO();
+  
+  
+ 
 
   numstars = 100;
   theStars = new star[numstars];

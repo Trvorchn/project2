@@ -21,7 +21,6 @@ void game() {
     GameObject currentObject= objects.get(i);
     currentObject.act();
     currentObject.show();
-    println(mouseX/100);
     currentObject.vel.setMag(max(player1.vel.mag(), 0.001));
     if (currentObject.lives == 0) {
       objects.remove(i);

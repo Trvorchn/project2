@@ -40,6 +40,7 @@ void introClicks() {
 void reset() {
   lives = 3;
   objects = new ArrayList();
+  objects.add(new UFO());
   player1 = new Spaceship();
   objects.add(player1);
   objects.add(new Asteroid());
