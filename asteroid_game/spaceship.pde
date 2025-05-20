@@ -176,7 +176,7 @@ class Spaceship  extends GameObject {
             float d = dist(newLoc.x, newLoc.y, obj.loc.x, obj.loc.y);
             if (d < 200) {
               safe = false;
-              break; 
+              break;
             }
           }
           i++;

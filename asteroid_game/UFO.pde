@@ -4,7 +4,7 @@ class UFO extends GameObject {
   PVector pos;
   int cooldown;
   float d = 50;
-
+int dirCooldown;
 
   UFO() {
     super(random(0, width), random(0, height), 0, 0, 1);
@@ -21,8 +21,14 @@ class UFO extends GameObject {
   void act() {
     move();
     if (frameCount % 100==0);
-    changeDir();
-    wrapAround();
+
+    if (dirCooldown <= 0) {
+      changeDir();
+      dirCooldown = 120;
+    } else {
+      dirCooldown--;
+      
+    }    wrapAround();
     checkForCollisions();
   }
 
@@ -69,7 +75,7 @@ class UFO extends GameObject {
     while (i < objects.size()) {
       GameObject obj = objects.get(i);
       if (obj instanceof Bullet) {
-        if (dist(loc.x, loc.y, obj.loc.x, obj.loc.y) < d / 2 + obj.d / 2) {
+        if (dist(loc.x, loc.y, obj.loc.x, obj.loc.y) < d + obj.d) {
 
           obj.lives = 0;
             this.lives = 0;
