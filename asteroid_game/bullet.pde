@@ -14,6 +14,7 @@ Bullet(UFO ufo) {
   timer = 500;
   d = 5;
   good = false;
+  stroke(red);
 }
 
   
@@ -21,14 +22,13 @@ Bullet(UFO ufo) {
   
 
   void show() {
-    fill(black);
-  
+fill(black);  
     strokeWeight(2);
     circle(loc.x, loc.y, d);
       if (good) {
-      fill(white);  // Yellow for player bullets
-    } else {
-      fill(255, 0, 0);  // Red for UFO bullets
+      stroke(white); 
+    } else if(!good){
+      stroke(red);  
     }
   }
   void act() {

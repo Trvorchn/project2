@@ -16,7 +16,7 @@ class UFO extends GameObject {
 
   void show() {
     drawUFO();
-  
+
     stroke(white);
     strokeWeight(2);
     circle(loc.x, loc.y, d);
@@ -76,29 +76,30 @@ class UFO extends GameObject {
   void shoot() {
     cooldown--;
     if (cooldown <= 0) {
-      gameObjects.add(ufoBullet);
       PVector bulletDir = new PVector(random(-1, 1), random(-1, 1));
+      bulletDir.normalize();
       bulletDir.mult(5);
 
-
       Bullet ufoBullet = new Bullet(this);
-
-      ufoBullet.loc = loc.copy();
       ufoBullet.vel = bulletDir;
+
       objects.add(ufoBullet);
 
       cooldown = 35;
     }
   }
 
+
   void checkForCollisions() {
     int i = 0;
     while (i < objects.size()) {
       GameObject obj = objects.get(i);
       if (obj instanceof Bullet) {
-        if (dist(loc.x, loc.y, obj.loc.x, obj.loc.y) < d + obj.d) {
+        Bullet b = (Bullet) obj;
 
-          obj.lives = 0;
+
+        if (b.good && dist(loc.x, loc.y, b.loc.x, b.loc.y) < d*1.5 + b.d*1.5) {
+          b.lives = 0;
           this.lives = 0;
         }
       }

@@ -87,6 +87,7 @@ class Spaceship  extends GameObject {
   void act() {
     move();
     shoot();
+    checkForShot();
     checkForCollisions();
     wrapAround();
     invincibleTimer();
@@ -134,6 +135,27 @@ class Spaceship  extends GameObject {
       GameObject obj = objects.get(i);
       if (obj instanceof Asteroid) {
         if (dist(loc.x, loc.y, obj.loc.x, obj.loc.y) < d/2 + obj.d/2) {
+          lives = lives -1;
+          obj.lives = 0;
+          player1.loc = new PVector(width/2, height/2);
+          player1.vel.set(0, 0);
+          invTimer = 120;
+        }
+        if (lives == 0) {
+          mode = GAMEOVER;
+        }
+      }
+      i++;
+    }
+  }
+  void checkForShot() {
+    int i = 0;
+    while (i < objects.size()) {
+      GameObject obj = objects.get(i);
+      if (obj instanceof Bullet) {
+        Bullet b = (Bullet) obj;
+
+        if (!b.good && dist(loc.x, loc.y, b.loc.x, b.loc.y) < d*5 + b.d*5) {
           lives = lives -1;
           obj.lives = 0;
           player1.loc = new PVector(width/2, height/2);

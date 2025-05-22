@@ -51,4 +51,8 @@ void reset() {
   objects.add(new Asteroid());
   objects.add(new Asteroid());
   objects.add(new Asteroid());
+  objects.add(new Asteroid());
+  objects.add(new Asteroid());
+  objects.add(new Asteroid());
+  objects.add(new Asteroid());
 }
