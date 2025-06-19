@@ -3,7 +3,7 @@ class star {
   // instance variables or fields
   float x, y, vx, vy, size;
   int r, g, b;
-  //constructor : special funciton that defines how a object  of this clas is born, defines initial values for fields
+
   star() {
     x = random(0, width);
     y = random(0, height);
